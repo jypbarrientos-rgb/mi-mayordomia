@@ -6,31 +6,18 @@
 <title>Mi Mayordomía</title>
 
 <style>
-*{
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f7fa;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background:#f5f7fa;
 }
 
 .header{
     background:#0f766e;
     color:white;
-    padding:40px 20px;
     text-align:center;
-}
-
-.header h1{
-    font-size:42px;
-    margin-bottom:10px;
-}
-
-.header p{
-    font-size:18px;
+    padding:40px;
 }
 
 .card{
@@ -42,12 +29,59 @@ body{
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-.card h2{
-    margin-bottom:15px;
+button{
+    background:#16a34a;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
 }
 
-.card p{
-    margin-bottom:20px;
-    line-height:1.6;
+button:hover{
+    background:#15803d;
 }
 
+.verse{
+    margin-top:20px;
+    color:#555;
+    font-style:italic;
+}
+</style>
+
+</head>
+<body>
+
+<div class="header">
+    <h1>Mi Mayordomía</h1>
+    <p>Administra tus recursos con sabiduría</p>
+</div>
+
+<div class="card">
+    <h2>Bienvenido</h2>
+
+    <p>
+        Controla ingresos, gastos, ahorro y metas financieras.
+    </p>
+
+    <button onclick="saludar()">
+        Comenzar
+    </button>
+
+    <div class="verse">
+        "Porque donde esté vuestro tesoro,
+        allí estará también vuestro corazón."
+        <br><br>
+        Mateo 6:21
+    </div>
+</div>
+
+<script>
+function saludar() {
+    alert("¡Bienvenido a Mi Mayordomía!");
+}
+</script>
+
+</body>
+</html>
