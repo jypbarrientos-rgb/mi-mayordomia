@@ -55,7 +55,7 @@ let ingresos = 0;
 let gastos = 0;
 
 const tbody =
-document.querySelector("#tablaMovimientos tbody");
+document.getElementById("cuerpoMovimientos");
 
 if(tbody){
 tbody.innerHTML = "";
