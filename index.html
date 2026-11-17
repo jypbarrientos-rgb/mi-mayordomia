@@ -1,220 +1,220 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Mayordomía</title>
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-.layout{
-    display:flex;
-    min-height:100vh;
-}
-
-.sidebar{
-    width:250px;
-    background:#0f766e;
-    color:white;
-    padding:20px;
-}
-
-.logo{
-    font-size:28px;
-    font-weight:bold;
-    margin-bottom:30px;
-}
-
-.menu{
-    list-style:none;
-    padding:0;
-}
-
-.menu li{
-    padding:15px;
-    border-radius:10px;
-    margin-bottom:10px;
-    cursor:pointer;
-}
-
-.menu li:hover{
-    background:#0b5e58;
-}
-
-.main{
-    flex:1;
-    padding:25px;
-}
-
-.section-title{
-    margin-bottom:20px;
-}
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#172d28">
+  <meta name="description" content="Organiza tus ingresos, gastos, presupuestos y metas de ahorro con Mi Mayordomía.">
+  <title>Mi Mayordomía — Finanzas con propósito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+      <div class="sidebar-head">
+        <a class="brand" href="#inicio" aria-label="Mi Mayordomía, inicio">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M5 10.5 16 4l11 6.5v13L16 30 5 23.5v-13Z" stroke="currentColor" stroke-width="1.7"/><path d="M11 16h10m-5-5v10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </span>
+          <span class="brand-copy"><strong>mi mayordomía</strong><small>FINANZAS CON PROPÓSITO</small></span>
+        </a>
+        <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Cerrar menú">×</button>
+      </div>
 
-<div class="layout">
+      <p class="nav-caption">MENÚ PRINCIPAL</p>
+      <nav class="nav-list">
+        <a class="nav-link active" href="#inicio"><span class="nav-icon" aria-hidden="true">⌂</span>Resumen</a>
+        <a class="nav-link" href="#movimientos"><span class="nav-icon" aria-hidden="true">↕</span>Movimientos</a>
+        <a class="nav-link" href="#presupuesto"><span class="nav-icon" aria-hidden="true">▤</span>Presupuestos</a>
+        <a class="nav-link" href="#metas"><span class="nav-icon" aria-hidden="true">◎</span>Metas de ahorro</a>
+        <a class="nav-link" href="#fondo"><span class="nav-icon" aria-hidden="true">✳</span>Fondo de emergencia</a>
+      </nav>
 
-    <aside class="sidebar">
-
-        <div class="logo">
-            💰 Mi Mayordomía
-        </div>
-
-        <ul class="menu">
-            <li>🏠 Inicio</li>
-            <li>💵 Ingresos</li>
-            <li>📉 Gastos</li>
-            <li>🎯 Metas</li>
-            <li>⛪ Diezmo</li>
-            <li>❤️ Fondo Emergencia</li>
-            <li>⚙️ Configuración</li>
-        </ul>
-
+      <div class="sidebar-note">
+        <span class="note-spark" aria-hidden="true">✳</span>
+        <p>“El Señor les ha dado una mayordomía.”</p>
+        <small>DOCTRINA Y CONVENIOS 104:13</small>
+      </div>
+      <div class="sidebar-footer"><span class="status-dot"></span> Tus datos viven en este dispositivo</div>
     </aside>
 
-    <main class="main">
+    <div class="sidebar-scrim" id="sidebarScrim" aria-hidden="true"></div>
+    <main class="main-content" id="inicio">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="sidebar">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="breadcrumb">Mi espacio <span>/</span> <strong>Resumen</strong></div>
+        <div class="topbar-right">
+          <span class="privacy-pill"><span class="status-dot"></span> PRIVADO Y LOCAL</span>
+          <div class="avatar" aria-label="Tu espacio">M</div>
+        </div>
+      </header>
 
-        <header>
-            <h1>Mi Mayordomía</h1>
-            <p>Administra tus recursos con sabiduría</p>
-        </header>
+      <div class="page-wrap">
+        <section class="welcome-row">
+          <div>
+            <p class="eyebrow" id="todayLabel">TU PANORAMA FINANCIERO</p>
+            <h1>Tu dinero, <em>con propósito.</em></h1>
+            <p class="welcome-copy">Un paso a la vez. Mira cómo va tu mes y sigue construyendo tranquilidad.</p>
+          </div>
+          <a class="button button-dark welcome-action" href="#movimientos"><span aria-hidden="true">＋</span> Registrar movimiento</a>
+        </section>
 
-        <div class="dashboard">
+        <section class="kpi-grid" aria-label="Resumen financiero del mes">
+          <article class="kpi-card balance-card">
+            <div class="kpi-heading"><span>Saldo del mes</span><span class="kpi-icon icon-balance" aria-hidden="true">◈</span></div>
+            <p class="kpi-value" id="saldo">$0</p>
+            <p class="kpi-foot"><span class="tiny-dot"></span>Ingresos menos gastos registrados</p>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-heading"><span>Ingresos</span><span class="kpi-icon icon-income" aria-hidden="true">↗</span></div>
+            <p class="kpi-value" id="ingresos">$0</p>
+            <p class="kpi-foot" id="ingresosFoot">Este mes</p>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-heading"><span>Gastos</span><span class="kpi-icon icon-expense" aria-hidden="true">↘</span></div>
+            <p class="kpi-value" id="gastos">$0</p>
+            <p class="kpi-foot" id="gastosFoot">Este mes</p>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-heading"><span>Ahorro neto</span><span class="kpi-icon icon-savings" aria-hidden="true">✳</span></div>
+            <p class="kpi-value" id="ahorro">$0</p>
+            <p class="kpi-foot">Disponible después de gastos</p>
+          </article>
+        </section>
 
-            <div class="card">
-                <h3>💰 Saldo</h3>
-                <div class="amount" id="saldo">$0</div>
+        <section class="chart-grid" aria-label="Análisis financiero">
+          <article class="panel trend-panel">
+            <div class="panel-heading">
+              <div><p class="eyebrow">VISTA GENERAL</p><h2>Ingresos y gastos</h2></div>
+              <span class="period-label"><span class="period-dot"></span> Este mes</span>
             </div>
-
-            <div class="card">
-                <h3>📈 Ingresos</h3>
-                <div class="amount" id="ingresos">$0</div>
+            <div class="trend-chart-wrap"><canvas id="grafico" role="img" aria-label="Gráfico de ingresos versus gastos"></canvas></div>
+            <div class="chart-legend">
+              <span><i class="legend-dot income-dot"></i>Ingresos <strong id="legendIngresos">$0</strong></span>
+              <span><i class="legend-dot expense-dot"></i>Gastos <strong id="legendGastos">$0</strong></span>
             </div>
-
-            <div class="card">
-                <h3>📉 Gastos</h3>
-                <div class="amount" id="gastos">$0</div>
+          </article>
+          <article class="panel category-panel">
+            <div class="panel-heading">
+              <div><p class="eyebrow">¿A DÓNDE VA?</p><h2>Gastos por categoría</h2></div>
+              <span class="round-icon" aria-hidden="true">⌁</span>
             </div>
-
-            <div class="card">
-                <h3>🎯 Ahorro</h3>
-                <div class="amount" id="ahorro">$0</div>
+            <div class="category-chart-wrap">
+              <canvas id="graficoCategorias" role="img" aria-label="Gráfico de gastos por categoría"></canvas>
+              <p class="chart-empty" id="categoryChartEmpty" hidden>Aún no hay gastos este mes.</p>
             </div>
+            <div class="category-legend" id="categoryLegend"></div>
+          </article>
+        </section>
 
-        </div>
+        <section class="content-grid">
+          <article class="panel movement-panel" id="movimientos">
+            <div class="panel-heading">
+              <div><p class="eyebrow">REGISTRO</p><h2>Nuevo movimiento</h2></div>
+              <span class="round-icon" aria-hidden="true">＋</span>
+            </div>
+            <form id="movementForm" novalidate>
+              <div class="field-label">Tipo de movimiento</div>
+              <div class="type-switch" role="group" aria-label="Tipo de movimiento">
+                <label class="type-option selected" id="incomeOption"><input type="radio" name="tipo" value="Ingreso" checked><span class="type-symbol">↗</span>Ingreso</label>
+                <label class="type-option" id="expenseOption"><input type="radio" name="tipo" value="Gasto"><span class="type-symbol">↘</span>Gasto</label>
+              </div>
+              <label class="field-label" for="descripcion">Descripción</label>
+              <input class="text-field" id="descripcion" name="descripcion" type="text" maxlength="80" placeholder="Ej. Pago de salario" required>
+              <div class="form-two-col">
+                <div>
+                  <label class="field-label" for="monto">Monto</label>
+                  <div class="money-input"><span>$</span><input id="monto" name="monto" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00" required></div>
+                </div>
+                <div>
+                  <label class="field-label" for="fecha">Fecha</label>
+                  <input class="text-field" id="fecha" name="fecha" type="date" required>
+                </div>
+              </div>
+              <div id="categoryField" class="category-field" hidden>
+                <label class="field-label" for="categoria">Categoría del gasto</label>
+                <select class="text-field" id="categoria" name="categoria"></select>
+              </div>
+              <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+              <button class="button button-dark form-submit" type="submit">Guardar movimiento <span aria-hidden="true">→</span></button>
+            </form>
+          </article>
 
-        <div class="form-section">
+          <article class="panel stewardship-panel">
+            <div class="panel-heading">
+              <div><p class="eyebrow">ADMINISTRA CON INTENCIÓN</p><h2>Tu compromiso</h2></div>
+              <span class="round-icon" aria-hidden="true">✧</span>
+            </div>
+            <div class="tithe-feature">
+              <div class="tithe-symbol" aria-hidden="true">✳</div>
+              <div><p class="feature-title">Diezmo sugerido</p><p class="feature-copy">10% de tus ingresos del mes</p></div>
+              <strong id="diezmo">$0</strong>
+            </div>
+            <div class="feature-divider"></div>
+            <div id="fondo" class="emergency-feature">
+              <div class="emergency-top">
+                <div class="emergency-symbol" aria-hidden="true">⌂</div>
+                <div><p class="feature-title">Fondo de emergencia</p><p class="feature-copy">Meta sugerida: 3 meses de gastos</p></div>
+              </div>
+              <div class="emergency-amounts"><strong id="emergencySaved">$0</strong><span>de <b id="emergencyTarget">$0</b></span></div>
+              <div class="progress-track"><span class="progress-fill emergency-fill" id="emergencyProgress"></span></div>
+              <div class="emergency-bottom"><span id="emergencyPercent">0% completado</span><button class="text-button" type="button" id="editEmergencyButton">Actualizar ahorro</button></div>
+              <form class="emergency-edit" id="emergencyForm" hidden>
+                <label class="field-label" for="emergencyInput">Ahorro actual del fondo</label>
+                <div class="inline-edit"><input class="text-field" id="emergencyInput" type="number" min="0" step="0.01" inputmode="decimal" aria-label="Ahorro actual del fondo"><button class="button button-dark" type="submit">Guardar</button></div>
+              </form>
+            </div>
+          </article>
+        </section>
 
-            <h2 class="section-title">
-                Registrar Movimiento
-            </h2>
+        <section class="panel budget-panel" id="presupuesto">
+          <div class="panel-heading budget-heading">
+            <div><p class="eyebrow">PLANIFICA ANTES DE GASTAR</p><h2>Presupuesto por categoría</h2><p class="section-subtitle">Define límites mensuales y revisa cómo vas.</p></div>
+            <button class="button button-outline" id="saveBudgets" type="button">Guardar presupuesto <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="budget-grid" id="budgetGrid"></div>
+          <p class="form-message" id="budgetMessage" role="status" aria-live="polite"></p>
+        </section>
 
-            <select id="tipo">
-                <option value="Ingreso">Ingreso</option>
-                <option value="Gasto">Gasto</option>
-            </select>
+        <section class="panel goals-panel" id="metas">
+          <div class="panel-heading goals-heading">
+            <div><p class="eyebrow">PEQUEÑOS PASOS, GRANDES LOGROS</p><h2>Metas de ahorro</h2><p class="section-subtitle">Dale un propósito a lo que estás guardando.</p></div>
+            <span class="goals-count" id="goalsCount">0 metas</span>
+          </div>
+          <form id="goalForm" class="goal-form" novalidate>
+            <div><label class="field-label" for="nombreMeta">Nombre de la meta</label><input class="text-field" id="nombreMeta" type="text" maxlength="60" placeholder="Ej. Viaje familiar" required></div>
+            <div><label class="field-label" for="montoMeta">Monto objetivo</label><div class="money-input"><span>$</span><input id="montoMeta" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00" required></div></div>
+            <button class="button button-dark" type="submit"><span aria-hidden="true">＋</span> Crear meta</button>
+          </form>
+          <p class="form-message" id="goalMessage" role="status" aria-live="polite"></p>
+          <div class="goals-grid" id="listaMetas"></div>
+        </section>
 
-            <input
-                id="descripcion"
-                placeholder="Descripción">
-
-            <input
-                id="monto"
-                type="number"
-                placeholder="Monto">
-
-            <button onclick="agregarMovimiento()">
-                Guardar Movimiento
-            </button>
-
-        </div>
-
-        <div class="form-section">
-
-            <h2>⛪ Diezmo Sugerido</h2>
-
-            <p>
-                Basado en los ingresos registrados
-            </p>
-
-            <h1 id="diezmo">
-                $0
-            </h1>
-
-        </div>
-
-        <div class="form-section">
-<div class="form-section">
-
-<h2>📋 Historial de Movimientos</h2>
-
-<table id="tablaMovimientos" style="width:100%;margin-top:20px;">
-
-<thead>
-
-<tr>
-<th>Tipo</th>
-<th>Descripción</th>
-<th>Monto</th>
-<th>Acción</th>
-</tr>
-
-</thead>
-
-<tbody id="cuerpoMovimientos">
-
-</tbody>
-
-</table>
-
-</div>
-
-<div class="form-section">
-
-<h2>📊 Resumen Financiero</h2>
-
-<canvas id="grafico"></canvas>
-
-</div>
-            <h2>🎯 Meta Principal</h2>
-
-            <input
-                id="metaMonto"
-                type="number"
-                placeholder="Ingresa tu meta">
-
-            <button>
-                Guardar Meta
-            </button>
-
-        </div>
-
-        <div class="form-section">
-
-            <h3>
-                "El Señor les ha dado una mayordomía."
-            </h3>
-
-            <p>
-                Doctrina y Convenios 104:13
-            </p>
-
-        </div>
-
+        <section class="panel history-panel" id="historial">
+          <div class="panel-heading history-heading">
+            <div><p class="eyebrow">TU ACTIVIDAD RECIENTE</p><h2>Historial de movimientos</h2></div>
+            <span class="movement-count" id="movementCount">0 movimientos</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Movimiento</th><th>Categoría</th><th>Fecha</th><th class="amount-column">Monto</th><th><span class="sr-only">Acciones</span></th></tr></thead>
+              <tbody id="cuerpoMovimientos"></tbody>
+            </table>
+            <div class="empty-state" id="emptyHistory" hidden><span aria-hidden="true">↗</span><p>Aún no hay movimientos</p><small>Registra tu primer ingreso o gasto para empezar.</small></div>
+          </div>
+        </section>
+        <footer class="page-footer"><span>MI MAYORDOMÍA <i>·</i> VERSIÓN 3.0</span><span>Hecho para una vida financiera con propósito.</span></footer>
+      </div>
     </main>
+  </div>
 
-</div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="app.js"></script>
-
-<script>
-function actualizarDiezmo(){
-
-let movimientos =
-JSON.parse(
-localStorage.getItem("movimientos")
-) || [];
-
+  <!-- Chart.js se carga desde CDN para mantener el sitio estático y compatible con GitHub Pages. -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
