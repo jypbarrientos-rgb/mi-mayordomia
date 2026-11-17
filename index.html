@@ -2,85 +2,359 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mi Mayordomía</title>
 
 <style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f5f7fa;
-    margin:0;
-    padding:0;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
-.header{
-    background:#0f766e;
-    color:white;
-    text-align:center;
-    padding:40px;
+body{
+background:#f4f6f9;
+padding:20px;
+}
+
+header{
+background:#0f766e;
+color:white;
+padding:30px;
+border-radius:15px;
+text-align:center;
+margin-bottom:25px;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+margin-bottom:30px;
 }
 
 .card{
-    background:white;
-    max-width:700px;
-    margin:40px auto;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.amount{
+font-size:28px;
+font-weight:bold;
+color:#0f766e;
+}
+
+.form-section{
+background:white;
+padding:20px;
+border-radius:15px;
+margin-bottom:25px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+input,
+select{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:8px;
 }
 
 button{
-    background:#16a34a;
-    color:white;
-    border:none;
-    padding:15px 25px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:18px;
+background:#22c55e;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
 }
 
 button:hover{
-    background:#15803d;
+background:#16a34a;
 }
 
-.verse{
-    margin-top:20px;
-    color:#555;
-    font-style:italic;
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
 }
+
+table th,
+table td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+.goal{
+margin-top:15px;
+padding:15px;
+background:#eefcf5;
+border-radius:12px;
+}
+
+.progress{
+height:20px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+margin-top:10px;
+}
+
+.progress-bar{
+height:100%;
+background:#22c55e;
+}
+
+.scripture{
+margin-top:30px;
+text-align:center;
+font-style:italic;
+color:#555;
+}
+
 </style>
-
 </head>
 <body>
 
-<div class="header">
-    <h1>Mi Mayordomía</h1>
-    <p>Administra tus recursos con sabiduría</p>
+<header>
+<h1>Mi Mayordomía</h1>
+<p>Administra tus recursos con sabiduría</p>
+</header>
+
+<div class="dashboard">
+
+<div class="card">
+<h3>Saldo</h3>
+<div class="amount" id="saldo">$0</div>
 </div>
 
 <div class="card">
-    <h2>Bienvenido</h2>
+<h3>Ingresos</h3>
+<div class="amount" id="ingresos">$0</div>
+</div>
 
-    <p>
-        Controla ingresos, gastos, ahorro y metas financieras.
-    </p>
+<div class="card">
+<h3>Gastos</h3>
+<div class="amount" id="gastos">$0</div>
+</div>
 
-    <button onclick="saludar()">
-        Comenzar
-    </button>
+<div class="card">
+<h3>Ahorro</h3>
+<div class="amount" id="ahorro">$0</div>
+</div>
 
-    <div class="verse">
-        "Porque donde esté vuestro tesoro,
-        allí estará también vuestro corazón."
-        <br><br>
-        Mateo 6:21
-    </div>
+</div>
+
+<div class="form-section">
+
+<h2>Agregar Movimiento</h2>
+
+<select id="tipo">
+<option value="Ingreso">Ingreso</option>
+<option value="Gasto">Gasto</option>
+</select>
+
+<input id="descripcion" placeholder="Descripción">
+
+<input id="monto" type="number" placeholder="Monto">
+
+<button onclick="agregarMovimiento()">
+Guardar
+</button>
+
+</div>
+
+<div class="form-section">
+
+<h2>Movimientos</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Monto</th>
+</tr>
+</thead>
+
+<tbody id="tablaMovimientos">
+</tbody>
+
+</table>
+
+</div>
+
+<div class="form-section">
+
+<h2>Meta de Ahorro</h2>
+
+<input id="metaMonto" type="number" placeholder="Meta deseada">
+
+<button onclick="guardarMeta()">
+Guardar Meta
+</button>
+
+<div id="metaContainer"></div>
+
+</div>
+
+<div class="scripture">
+"El Señor les ha dado una mayordomía."
+<br><br>
+Doctrina y Convenios 104:13
 </div>
 
 <script>
-function saludar() {
-    alert("¡Bienvenido a Mi Mayordomía!");
+
+let movimientos =
+JSON.parse(localStorage.getItem('movimientos')) || [];
+
+let meta =
+localStorage.getItem('meta') || 0;
+
+function guardarDatos(){
+localStorage.setItem(
+'movimientos',
+JSON.stringify(movimientos)
+);
 }
+
+function agregarMovimiento(){
+
+let tipo =
+document.getElementById('tipo').value;
+
+let descripcion =
+document.getElementById('descripcion').value;
+
+let monto =
+parseFloat(
+document.getElementById('monto').value
+);
+
+if(!descripcion || !monto){
+alert("Complete todos los campos");
+return;
+}
+
+movimientos.push({
+tipo,
+descripcion,
+monto
+});
+
+guardarDatos();
+
+document.getElementById('descripcion').value="";
+document.getElementById('monto').value="";
+
+actualizarPantalla();
+}
+
+function guardarMeta(){
+
+meta =
+parseFloat(
+document.getElementById('metaMonto').value
+);
+
+localStorage.setItem(
+'meta',
+meta
+);
+
+actualizarPantalla();
+}
+
+function actualizarPantalla(){
+
+let ingresos = 0;
+let gastos = 0;
+
+const tabla =
+document.getElementById('tablaMovimientos');
+
+tabla.innerHTML="";
+
+movimientos.forEach(m=>{
+
+if(m.tipo==="Ingreso"){
+ingresos += m.monto;
+}else{
+gastos += m.monto;
+}
+
+tabla.innerHTML += `
+<tr>
+<td>${m.tipo}</td>
+<td>${m.descripcion}</td>
+<td>$${m.monto.toLocaleString()}</td>
+</tr>
+`;
+
+});
+
+let saldo =
+ingresos - gastos;
+
+document.getElementById('ingresos')
+.textContent="$"+ingresos.toLocaleString();
+
+document.getElementById('gastos')
+.textContent="$"+gastos.toLocaleString();
+
+document.getElementById('saldo')
+.textContent="$"+saldo.toLocaleString();
+
+document.getElementById('ahorro')
+.textContent="$"+saldo.toLocaleString();
+
+mostrarMeta(saldo);
+}
+
+function mostrarMeta(saldo){
+
+const contenedor =
+document.getElementById('metaContainer');
+
+if(!meta || meta <= 0){
+contenedor.innerHTML="";
+return;
+}
+
+let porcentaje =
+Math.min((saldo/meta)*100,100);
+
+contenedor.innerHTML = `
+<div class="goal">
+<h3>Meta: $${Number(meta).toLocaleString()}</h3>
+
+<p>Avance: ${porcentaje.toFixed(1)}%</p>
+
+<div class="progress">
+<div class="progress-bar"
+style="width:${porcentaje}%">
+</div>
+</div>
+</div>
+`;
+}
+
+actualizarPantalla();
+
 </script>
 
 </body>
